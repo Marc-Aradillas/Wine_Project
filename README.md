@@ -54,8 +54,7 @@ Elevating the art of winemaking through data-driven alchemy, this project fuses 
 | Free Sulfur dioxide         |   Float    | The free form of SO₂ present in the wine (measured in mg/dm³). |
 | Total sulfar dioxide | Float | Amount of free and bound forms of SO₂ (measured in mg/dm³).|
 | Density  | Float  | The density of wine is close to that of water depending on the alcohol and sugar content (measured in g/cm³).|
-| PH|  Float   |  Describes the acidity or basicity of the wine on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4.
- |
+| PH|  Float   |  Describes the acidity or basicity of the wine on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4.|
 |Sulphates      |  Float   |A wine additive that contributes to SO₂ gas levels, which acts as an antimicrobial and antioxidant (measured in g/dm³).|
 | Alcohol        |   Float  | The percentage of alcohol present in the wine.|
 | Quality  |  Float   | A score between 0 and 10 given to the wine sample. |
