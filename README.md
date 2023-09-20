@@ -8,13 +8,13 @@
 - Conclusions
   - Takeaway and Key Findings
   - Reccomendations
-  - Next Step
+  - Next Steps
 
     
 # Wine_Project
 
 <img width="400" alt="Screenshot 2023-09-20 at 12 11 45 PM" src="https://github.com/Marc-Aradillas/Wine_Project/assets/136507682/e3b58b6e-1037-4a5e-a858-860b3fd513ed">
-s
+
 
 To forecast a wine's excellence by harnessing the nuanced insights of unsupervised learning algorithms.
 
