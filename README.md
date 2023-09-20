@@ -1,2 +1,11 @@
 # Wine_Project
-Project for using Clustering ML algorithm technique
+- Project Description
+- Project Goal
+- Initial Thoughts
+- Plan
+- Data Dictionary
+- Steps to Reproduce
+- Conclusions
+  - Takeaway and Key Findings
+  - Reccomendations
+  - Next Steps
