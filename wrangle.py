@@ -207,7 +207,7 @@ def wrangle_wine():
         # Scale the data
         # train_scaled, val_scaled, test_scaled = scale_data(train, val, test, mms)
 
-        return df
+        return train, val, test
     else:
         # Handle the case where data acquisition failed
         return None
