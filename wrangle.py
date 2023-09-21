@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 mms = MinMaxScaler()
 
 def acquire_wine():
-    """
+    """ 
     Acquires the wine dataset from a CSV file.
 
     Returns:
