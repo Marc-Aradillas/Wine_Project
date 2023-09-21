@@ -52,9 +52,11 @@ def chi2_and_visualize(df, cat_var, target, a=0.05, decimal_places=2):
     # print(f'Expected: {e}\n')
 
     # Plotting the countplot
-    title = f'{cat_var.capitalize()} vs. {target.capitalize()}'
     sns.countplot(data=df, x=cat_var, hue=target)
-    plt.title(title)
+    plt.title(f'Wine Quality vs. Alcohol Content Range')
+    plt.xlabel(f'Alcohol Content')
+    plt.ylabel(f'Wine Quality')
+    plt.legend(title='Wine Quality', labels=['Low', 'Medium', 'High'])
     plt.show()
 
     eval_p(p)

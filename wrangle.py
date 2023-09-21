@@ -37,9 +37,93 @@ def clean_wine():
         # Clean the column names
         df.columns = [col.lower().replace(' ', '_') for col in df.columns]
 
-        # Create 'alcohol_bins' and 'quality_bins' columns
-        df['alcohol_bins'] = pd.cut(df['alcohol'], [0, 8, 10, 12, 15], labels=['no_alcohol', 'low_alcohol', 'medium_alcohol', 'high_alcohol'])
-        df['quality_bins'] = pd.cut(df['quality'], [0, 3, 7, 10], labels=['low', 'medium', 'high'])
+        # Create features
+        
+        # Quality Range
+        df['quality_bins'] = pd.cut(df['quality'], [0, 3, 6, 10], labels=['Low', 'Medium', 'High'])
+
+        # Alcohol Content Range
+        df['alcohol_bins'] = pd.cut(df['alcohol'], [0, 10, 12, float('inf')], labels=['Low', 'Medium', 'High'])
+        
+        # Total Sulfur Dioxide per Free Sulfur Dioxide
+        df['total_sulfur_ratio'] = df['total_sulfur_dioxide'] / df['free_sulfur_dioxide']
+        
+        # Acidity Level
+        df['acidity_level'] = df['citric_acid'] * df['ph']
+        
+        # Sugar to Alcohol Ratio
+        df['sugar_alcohol_ratio'] = df['residual_sugar'] / df['alcohol']
+        
+        # Chlorides to pH Ratio
+        df['chlorides_ph_ratio'] = df['chlorides'] / df['ph']
+        
+        # Density to pH Ratio
+        df['density_ph_ratio'] = df['density'] / df['ph']
+        
+        # Sulfur Dioxide Level
+        df['sulfur_dioxide_level'] = df['free_sulfur_dioxide'] + df['total_sulfur_dioxide']
+        
+        # Sulfates to Chlorides Ratio
+        df['sulfates_chlorides_ratio'] = df['sulphates'] / df['chlorides']
+        
+        # pH Level Range
+        df['ph_bins'] = pd.cut(df['ph'], [0, 3.0, 3.5, float('inf')], labels=['Low', 'Medium', 'High'])
+        
+        # Quality Range
+        df['quality_bins'] = pd.cut(df['quality'], [0, 3, 6, 10], labels=['Low', 'Medium', 'High'])
+        
+        # Total Acid Level
+        df['total_acid'] = df['citric_acid'] + df['sulphates']
+        
+        # Sulfur Dioxide to Chlorides Ratio
+        df['sulfur_dioxide_chlorides_ratio'] = df['total_sulfur_dioxide'] / df['chlorides']
+        
+        # Residual Sugar to pH Ratio
+        df['residual_sugar_ph_ratio'] = df['residual_sugar'] / df['ph']
+        
+        # Acid Ratio
+        df['acid_ratio'] = df['citric_acid'] / df['sulphates']
+        
+        # Alcohol to pH Ratio
+        df['alcohol_ph_ratio'] = df['alcohol'] / df['ph']
+        
+        # Chlorides to Density Ratio
+        df['chlorides_density_ratio'] = df['chlorides'] / df['density']
+        
+        # Total Sulfur Dioxide to Residual Sugar Ratio
+        df['total_sulfur_residual_sugar_ratio'] = df['total_sulfur_dioxide'] / df['residual_sugar']
+        
+        # Sulfur Dioxide as a Percentage of Total Sulfur Dioxide
+        df['sulfur_dioxide_percentage'] = (df['free_sulfur_dioxide'] / df['total_sulfur_dioxide']) * 100
+        
+        # pH to Chlorides Ratio
+        df['ph_chlorides_ratio'] = df['ph'] / df['chlorides']
+        
+        # Alcohol to Sugar Ratio
+        df['alcohol_sugar_ratio'] = df['alcohol'] / df['residual_sugar']
+        
+        # Density to Sulfates Ratio
+        df['density_sulfates_ratio'] = df['density'] / df['sulphates']
+        
+        # Chlorides to Sulfates Ratio
+        df['chlorides_sulfates_ratio'] = df['chlorides'] / df['sulphates']
+        
+        # Residual Sugar as a Percentage of Total Sulfur Dioxide
+        df['residual_sugar_percentage'] = (df['residual_sugar'] / df['total_sulfur_dioxide']) * 100
+        
+        # Alcohol to Chlorides Ratio
+        df['alcohol_chlorides_ratio'] = df['alcohol'] / df['chlorides']
+        
+        # Density to Sulfur Dioxide Ratio
+        df['density_sulfur_dioxide_ratio'] = df['density'] / df['total_sulfur_dioxide']
+        
+        # pH to Sulfur Dioxide Ratio
+        df['ph_sulfur_dioxide_ratio'] = df['ph'] / df['total_sulfur_dioxide']
+        
+        # Sulfur Dioxide to Sugar Ratio
+        df['sulfur_dioxide_sugar_ratio'] = df['total_sulfur_dioxide'] / df['residual_sugar']
+
+
 
     return df
 
