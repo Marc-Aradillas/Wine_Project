@@ -69,8 +69,6 @@ def clean_wine():
         # pH Level Range
         df['ph_bins'] = pd.cut(df['ph'], [0, 3.0, 3.5, float('inf')], labels=['Low', 'Medium', 'High'])
         
-        # Quality Range
-        df['quality_bins'] = pd.cut(df['quality'], [0, 3, 6, 10], labels=['Low', 'Medium', 'High'])
         
         # Total Acid Level
         df['total_acid'] = df['citric_acid'] + df['sulphates']
