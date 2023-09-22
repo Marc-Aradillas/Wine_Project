@@ -71,12 +71,25 @@ Elevating the art of winemaking through data-driven alchemy, this project fuses 
 
 # Conclusion
 Takeaways and Key Findings
+- The chemical properties in the collection of red and white wines taht seem to drive quality are aclohol content, citric acid, and fixed acidity.
+
+- The wines on average contain around 10.5% alcohol content and are mostly composed of average quality wine.
+
+- The clusters when hued by density tells us how they are present within our data
 
 
 
 # Model Improvement
 
+- The model still requires further improvement either hyperparamater tuning or revisiting prepare and feature engineering.
+
 # Recommendations and Next Steps
 
+- I would recommend to gather data on wine shelf life, aged wine over time may play a part in quality of wine. The organics used to create the wine would possibily help in predicting quality.
+
+- Given more time, the following actions could be considered:
+  - Gather more data to improve model performance.
+  - Feature engineer new variables to enhance model understanding.
+  - Fine-tune model parameters for better performance.
 
 
