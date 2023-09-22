@@ -515,7 +515,7 @@ def best_model(X_train, y_train, X_test, y_test):
 
     # Make predictions on training and validation sets
     train_preds = rfr.predict(X_train)
-    val_preds = rfr.predict(X_test)
+    test_preds = rfr.predict(X_test)
 
     # Calculate RMSE for training and validation sets
     train_rmse = np.sqrt(mean_squared_error(y_train, train_preds))
