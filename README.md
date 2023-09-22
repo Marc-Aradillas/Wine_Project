@@ -65,7 +65,7 @@ Elevating the art of winemaking through data-driven alchemy, this project fuses 
 
 - Fetch wine quality data from Data.World.
 - Merge red and white wine CSVs, adding a color identifier.
-- Save as 'combined_wine.csv' for repo use.
+- Save as 'winequality_red_white.csv' for repo use.
 - Clone repo and insert data.
 - Execute notebook.
 
