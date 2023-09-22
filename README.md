@@ -11,10 +11,12 @@
   - Next Steps
 
     
-# Wine_Project
+# Wine Project
 
-<img width="400" alt="Screenshot 2023-09-20 at 12 11 45 PM" src="https://github.com/Marc-Aradillas/Wine_Project/assets/136507682/e3b58b6e-1037-4a5e-a858-860b3fd513ed">
 
+<div align="center">
+  <img src="https://github.com/Marc-Aradillas/Wine_Project/assets/106922826/bd7c8b8c-70a9-4334-a416-4005c805d4e7" alt="Alt Text" width="500">
+</div>
 
 To forecast a wine's excellence by harnessing the nuanced insights of unsupervised learning algorithms.
 
@@ -26,7 +28,7 @@ Elevating the art of winemaking through data-driven alchemy, this project fuses 
 
 - Uncover crucial drivers affecting wine quality.
 - Utilize K-means clustering to delve into chemical intricacies.
-- Gauge cluster efficacy via linear and polynomial regression, deploying the ultimate model for future quality projections. Tools & Tech:
+- Gauge cluster efficacy via linear and polynomial regression, deploying the ultimate model for future quality projections.
 
 # Initial Thoughts
 
