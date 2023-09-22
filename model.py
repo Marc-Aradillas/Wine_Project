@@ -488,51 +488,70 @@ def model_3(X_train, y_train, X_val, y_val):
 
 
 
-def best_model(X_train, y_train, X_test, y_test):
+def best_model(X_train, y_train, X_test, y_test, early_stopping_rounds=10, params=None):
+   # Define the hyperparameters for your XGBoost model (or pass them as an argument)
+    if params is None:
+        params = {
+            'learning_rate': 0.1,
+            'n_estimators': 100,
+            'max_depth': 4,
+            'min_child_weight': 5,
+            'gamma': 0,
+            'subsample': 0.9,
+            'colsample_bytree': 0.9,
+            'objective': 'reg:squarederror',
+            'random_state': 42,
+            'eval_metric': 'rmse',
+            'early_stopping_rounds': 10,
+            # Add other hyperparameters as needed
+        }
 
-    # Define the hyperparameter grid to search
-    param_grid = {
-        'n_estimators': [50, 100, 200],
-        'max_depth': [None, 10, 20, 30],
-        'min_samples_split': [2, 5, 10],
-        'min_samples_leaf': [1, 2, 4],
-    }
+    # Define weight data (you can replace this with your actual weights)
+    sample_weights = np.ones(X_train.shape[0])  # Example: All weights are set to 1
+    
+    # Create the XGBoost regressor with your specified hyperparameters
+    xgb = XGBRegressor(**params)
+    
+    # Fit the model to your training data with eval_set and verbose
+    xgb.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False, sample_weight=sample_weights)
 
-    # Create the grid search object
-    grid_search = GridSearchCV(RandomForestRegressor(random_state=42), param_grid, cv=5, n_jobs=-1, scoring='neg_mean_squared_error')
-
-    # Train the model with hyperparameter tuning on the training data
-    grid_search.fit(X_train, y_train)
-
-    # Get the best hyperparameters
-    best_params = grid_search.best_params_
-
-    # Initialize the RandomForestRegressor with the best hyperparameters
-    rfr = RandomForestRegressor(**best_params, random_state=42)
-
-    # Train the model on the training data
-    rfr.fit(X_train, y_train)
-
-    # Make predictions on training and validation sets
-    train_preds = rfr.predict(X_train)
-    test_preds = rfr.predict(X_test)
-
-    # Calculate RMSE for training and validation sets
-    train_rmse = np.sqrt(mean_squared_error(y_train, train_preds))
+    # Access the best iteration and best score
+    best_iteration = xgb.best_iteration
+    best_score = xgb.best_score
+    
+    # Make predictions on the test set
+    test_preds = xgb.predict(X_test)
+    
+    # Calculate RMSE and R2 for the test set
     test_rmse = np.sqrt(mean_squared_error(y_test, test_preds))
-
-    # Calculate R-squared (R2) for training and validation sets
-    train_r2 = r2_score(y_train, train_preds)
     test_r2 = r2_score(y_test, test_preds)
 
-    # Print the metrics and best hyperparameters
+    # Make predictions on the training set
+    train_preds = xgb.predict(X_train)
+
+    # Calculate RMSE and R2 for the training set
+    train_rmse = np.sqrt(mean_squared_error(y_train, train_preds))
+    train_r2 = r2_score(y_train, train_preds)
+    
+    # Create a dictionary to store the results
+    results = {
+        'model': xgb,
+        'train_rmse': train_rmse,
+        'train_r2': train_r2,
+        'test_rmse': test_rmse,
+        'test_r2': test_r2,
+        'best_score': best_score,
+        'best_iteration': best_iteration
+    }
+
+    # Print the metrics within the function
     print(f"\n-------------------------------------")
-    print(f"\nTraining RMSE: {train_rmse:.2f}")
+    print(f"\nTrain RMSE: {train_rmse:.2f}")
     print(f"\n-------------------------------------")
-    print(f"\nValidation RMSE: {test_rmse:.2f}")
+    print(f"\nTrain R-squared (R2): {train_r2:.2f}")
+    print(f"\n------------------------------------")
+    print(f"\nTest RMSE: {test_rmse:.2f}")
     print(f"\n-------------------------------------")
-    print(f"\nTraining R-squared (R2): {train_r2:.2f}")
+    print(f"\nTest R-squared (R2): {test_r2:.2f}")
     print(f"\n-------------------------------------")
-    print(f"\nValidation R-squared (R2): {test_r2:.2f}")
-    print(f"\n-------------------------------------")
-    # print(f"\nBest Hyperparameters: {best_params}")
+    print(f"\nBest Score: {best_score:.2f}")
