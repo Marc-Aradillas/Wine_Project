@@ -46,20 +46,59 @@ Elevating the art of winemaking through data-driven alchemy, this project fuses 
 
 # Data Dictionary
 
-|Feature            | Data Type | Defination |
-| :---------------- | :------: | :---- |
-|Fixed Acidity       |   Float  | The amount of tartaric acid in wine, which is found in grapes (measured in g/dm³). |
-| Volatile Acidity          | Float  | The amount of acetic acid in wine, which at high levels can lead to an unpleasant, vinegar-like taste. |
-| Citric Acid   |  Float    | Found in small quantities, citric acid can add 'freshness' and flavor to wines.|
-| Residual Sugar|  Float    | The amount of sugar remaining after fermentation stops (measured in g/dm³). |
-|Chloride      |   Float  | The amount of salt in the wine (measured in g/dm³). |
-| Free Sulfur dioxide         |   Float    | The free form of SO₂ present in the wine (measured in mg/dm³). |
-| Total sulfar dioxide | Float | Amount of free and bound forms of SO₂ (measured in mg/dm³).|
-| Density  | Float  | The density of wine is close to that of water depending on the alcohol and sugar content (measured in g/cm³).|
-| PH|  Float   |  Describes the acidity or basicity of the wine on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4.|
-|Sulphates      |  Float   |A wine additive that contributes to SO₂ gas levels, which acts as an antimicrobial and antioxidant (measured in g/dm³).|
-| Alcohol        |   Float  | The percentage of alcohol present in the wine.|
-| Quality  |  Float   | A score between 0 and 10 given to the wine sample. |
+| Feature                                  | Data Type | Definition                                                     |
+| ---------------------------------------- | :-------: | -------------------------------------------------------------- |
+| Fixed Acidity                            |   Float   | The amount of tartaric acid in wine, which is found in grapes (measured in g/dm³). |
+| Volatile Acidity                         |   Float   | The amount of acetic acid in wine, which at high levels can lead to an unpleasant, vinegar-like taste. |
+| Citric Acid                              |   Float   | Found in small quantities, citric acid can add 'freshness' and flavor to wines. |
+| Residual Sugar                           |   Float   | The amount of sugar remaining after fermentation stops (measured in g/dm³). |
+| Chloride                                 |   Float   | The amount of salt in the wine (measured in g/dm³). |
+| Free Sulfur Dioxide                      |   Float   | The free form of SO₂ present in the wine (measured in mg/dm³). |
+| Total Sulfur Dioxide                     |   Float   | Amount of free and bound forms of SO₂ (measured in mg/dm³). |
+| Density                                  |   Float   | The density of wine is close to that of water depending on the alcohol and sugar content (measured in g/cm³). |
+| pH                                       |   Float   | Describes the acidity or basicity of the wine on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4. |
+| Sulphates                                |   Float   | A wine additive that contributes to SO₂ gas levels, which acts as an antimicrobial and antioxidant (measured in g/dm³). |
+| Alcohol                                  |   Float   | The percentage of alcohol present in the wine. |
+| Quality                                  |   Float   | A score between 0 and 10 given to the wine sample. |
+| total_sulfur_ratio                       |   Float   | The ratio of total sulfur dioxide to some other factor. |
+| acidity_level                            |   Float   | Represents the level of acidity in the wine. |
+| sugar_alcohol_ratio                      |   Float   | The ratio of sugar content to alcohol content in the wine. |
+| chlorides_ph_ratio                       |   Float   | The ratio of chlorides to pH level in the wine. |
+| density_ph_ratio                         |   Float   | The ratio of wine density to pH level. |
+| sulfur_dioxide_level                     |   Float   | The level of sulfur dioxide in the wine. |
+| sulfates_chlorides_ratio                 |   Float   | The ratio of sulfates to chlorides in the wine. |
+| ph_bins                                  |   Float   | A bin or category representing the pH level of the wine. |
+| total_acid                               |   Float   | The total acidity of the wine. |
+| sulfur_dioxide_chlorides_ratio           |   Float   | The ratio of sulfur dioxide to chlorides in the wine. |
+| residual_sugar_ph_ratio                  |   Float   | The ratio of residual sugar content to pH level in the wine. |
+| acid_ratio                               |   Float   | A ratio related to the acidity of the wine. |
+| alcohol_ph_ratio                         |   Float   | The ratio of alcohol content to pH level in the wine. |
+| chlorides_density_ratio                  |   Float   | The ratio of chlorides to wine density. |
+| total_sulfur_residual_sugar_ratio        |   Float   | The ratio of total sulfur dioxide to residual sugar. |
+| sulfur_dioxide_percentage                |   Float   | The percentage of sulfur dioxide in the wine. |
+| ph_chlorides_ratio                       |   Float   | The ratio of pH level to chlorides in the wine. |
+| alcohol_sugar_ratio                      |   Float   | The ratio of alcohol content to sugar content in the wine. |
+| density_sulfates_ratio                   |   Float   | The ratio of wine density to sulfates content. |
+| chlorides_sulfates_ratio                 |   Float   | The ratio of chlorides to sulfates in the wine. |
+| residual_sugar_percentage                |   Float   | The percentage of residual sugar in the wine. |
+| alcohol_chlorides_ratio                  |   Float   | The ratio of alcohol content to chlorides in the wine. |
+| density_sulfur_dioxide_ratio             |   Float   | The ratio of wine density to sulfur dioxide level. |
+| ph_sulfur_dioxide_ratio                  |   Float   | The ratio of pH level to sulfur dioxide level in the wine. |
+| sulfur_dioxide_sugar_ratio              |   Float   | The ratio of sulfur dioxide to sugar content in the wine. |
+| composite_cluster_1                      |   Float   | A cluster or grouping assigned to the wine sample (Cluster 1). |
+| composite_cluster_2                      |   Float   | A cluster or grouping assigned to the wine sample (Cluster 2). |
+| composite_cluster_3                      |   Float   | A cluster or grouping assigned to the wine sample (Cluster 3). |
+| composite_cluster_4                      |   Float   | A cluster or grouping assigned to the wine sample (Cluster 4). |
+| alcohol_bins_low                         |   Float   | A bin or category representing low alcohol content. |
+| alcohol_bins_medium                      |   Float   | A bin or category representing medium alcohol content. |
+| alcohol_bins_high                        |   Float   | A bin or category representing high alcohol content. |
+| ph_bins_low                              |   Float   | A bin or category representing low pH level. |
+| ph_bins_medium                           |   Float   | A bin or category representing medium pH level. |
+| ph_bins_high                             |   Float   | A bin or category representing high pH level. |
+| quality_bins_poor                        |   Float   | A bin or category representing poor wine quality. |
+| quality_bins_average                     |   Float   | A bin or category representing average wine quality. |
+| quality_bins_excellent                   |   Float   | A bin or category representing excellent wine quality. |
+
 
 # Steps to Reproduce
 
