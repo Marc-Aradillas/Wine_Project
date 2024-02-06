@@ -1,15 +1,13 @@
 
-- Project Description
-- Project Goal
-- Initial Thoughts
-- Plan
-- Data Dictionary
-- Steps to Reproduce
-- Conclusions
-  - Takeaway and Key Findings
-  - Reccomendations
-  - Next Steps
-
+- [Project Description](#project-description)
+- [Project Goal](#project-goal)
+- [Initial Thoughts](#initial-thoughts)
+- [Plan](#the-plan)
+- [Data Dictionary](#data-dictionary)
+- [Steps to Reproduce](#steps-to-reproduce) 
+- [Conclusions](#conclusions)
+	- [Takeaway and Key Findings](#takeaways-and-key-findings)
+	- [Reccomendations and next steps](#recommendations-and-next-steps)
     
 # Wine Project
 
