@@ -113,6 +113,7 @@ def one_sample_t_test(data, pop_mean, a=0.05):
     eval_p(p) 
 
 def analysis_2(df, num_col_name, a=0.05):
+    #FIXME: Reevaluate on exploratory analysis on the features
     num_col = df[num_col_name]
     pop_mean = df[num_col_name].mean()
     one_sample_t_test(num_col, pop_mean, a=0.05)
