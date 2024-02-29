@@ -24,6 +24,16 @@ import evaluate as ev
 
 
 def eval_model(y_actual, y_hat):
+    """
+    Calculate the root mean squared error (RMSE) between the actual and predicted values.
+
+    Args:
+        y_actual (array-like): Actual target values.
+        y_hat (array-like): Predicted target values.
+
+    Returns:
+        float: The RMSE between y_actual and y_hat.
+    """
     
     return sqrt(mean_squared_error(y_actual, y_hat))
 
@@ -160,6 +170,16 @@ def model_features(train_scaled, val_scaled, test_scaled, variable1, variable2, 
 
 
 def one_hot_encode_and_drop(df, columns_to_encode):
+    """
+    Apply one-hot encoding to specified columns and drop the original columns from the DataFrame.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to apply one-hot encoding to.
+        columns_to_encode (list): List of column names to one-hot encode.
+
+    Returns:
+        pd.DataFrame: The DataFrame with one-hot encoding applied and original columns dropped.
+    """
     # Iterate through the columns and apply one-hot encoding
     for column in columns_to_encode:
         df = pd.concat([df, pd.get_dummies(df[column], prefix=column, drop_first=True)], axis=1)
@@ -173,13 +193,35 @@ def one_hot_encode_and_drop(df, columns_to_encode):
 # ------------------------ XY SPLIT FUNCTION ----------------------
 # xy_split function to create usable subsets; reusable.
 def xy_split(df, col):
+    """
+    Split the DataFrame into feature and target data.
+
+    Args:
+        df (pd.DataFrame): The DataFrame containing both features and the target.
+        col (str): The name of the target column.
+
+    Returns:
+        tuple: A tuple containing feature data (X) and target data (y).
+    """
     X = df.drop(columns=[col])
     y = df[col]
     return X, y
 
 
 def baseline_model(train, target, train_scaled, val_scaled, test_scaled, variable1, variable2, variable3):
-    
+    """
+    Calculate and display baseline model metrics.
+
+    Args:
+        train (pd.DataFrame): Training data.
+        target (str): Name of the target column.
+        train_scaled (pd.DataFrame): Scaled training data.
+        val_scaled (pd.DataFrame): Scaled validation data.
+        test_scaled (pd.DataFrame): Scaled test data.
+        variable1 (str): Name of the first feature for clustering.
+        variable2 (str): Name of the second feature for clustering.
+        variable3 (str): Name of the third feature for clustering.
+    """
     # Call find_clusters function to add cluster columns to train, val, and test
     train, val, test = model_features(train_scaled, val_scaled, test_scaled, variable1, variable2, variable3, n_clusters=5)
 
@@ -229,7 +271,17 @@ def baseline_model(train, target, train_scaled, val_scaled, test_scaled, variabl
 # _______________________Select kBest function _____________________
 
 def select_k_features(data, target, k=5):
+    """
+    Select the top k features using SelectKBest and return their names.
 
+    Args:
+        data (pd.DataFrame): The DataFrame containing features and target.
+        target (str): Name of the target column.
+        k (int): Number of top features to select.
+
+    Returns:
+        list: List of selected feature names.
+    """
     # # drop categorical features
     # data = data.drop(columns=(['quality_bins_Medium',
     #                             'quality_bins_High',
@@ -259,7 +311,17 @@ def select_k_features(data, target, k=5):
 #=========================feature prep===============================
 
 def modeling_features(train, val, test):
+    """
+    Prepare features for modeling by adding cluster features and applying one-hot encoding.
 
+    Args:
+        train (pd.DataFrame): Training data.
+        val (pd.DataFrame): Validation data.
+        test (pd.DataFrame): Test data.
+
+    Returns:
+        tuple: A tuple containing modified train, validation, and test DataFrames.
+    """
     # # drop categorical features
     # train = train.drop(columns=(['quality_bins', 'alcohol_bins', 'ph_bins']))
     # val = val.drop(columns=(['quality_bins', 'alcohol_bins', 'ph_bins']))
@@ -291,6 +353,15 @@ def modeling_features(train, val, test):
 # ========================model functions=========================
 
 def model_1(X_train, y_train, X_val, y_val):
+    """
+    Train and evaluate a Random Forest model with hyperparameter tuning.
+
+    Args:
+        X_train (pd.DataFrame): Training features.
+        y_train (pd.Series): Training target.
+        X_val (pd.DataFrame): Validation features.
+        y_val (pd.Series): Validation target.
+    """
     # Define the hyperparameter grid to search
     param_grid = {
         'n_estimators': [50, 100, 200],
@@ -344,6 +415,17 @@ def model_1(X_train, y_train, X_val, y_val):
 
 
 def model_2(X_train, y_train, X_val, y_val, early_stopping_rounds=10, params=None):
+    """
+    Train and evaluate an XGBoost model with hyperparameter tuning and early stopping.
+
+    Args:
+        X_train (pd.DataFrame): Training features.
+        y_train (pd.Series): Training target.
+        X_val (pd.DataFrame): Validation features.
+        y_val (pd.Series): Validation target.
+        early_stopping_rounds (int): Number of rounds with no improvement to trigger early stopping.
+        params (dict): XGBoost hyperparameters.
+    """
     # Define the hyperparameters for your XGBoost model (or pass them as an argument)
     if params is None:
         params = {
@@ -415,19 +497,15 @@ def model_2(X_train, y_train, X_val, y_val, early_stopping_rounds=10, params=Non
 
 def train_and_evaluate_model(model, X_train, y_train, X_val, y_val):
     """
-    Train a machine learning model and evaluate its performance on training and validation data.
-    
+    Train and evaluate an XGBoost model with hyperparameter tuning and early stopping.
+
     Args:
-        model (object): The machine learning model to be trained.
-        X_train (array-like): Training feature data.
-        y_train (array-like): Training target data.
-        X_val (array-like): Validation feature data.
-        y_val (array-like): Validation target data.
-        
-    Returns:
-        object: The trained model.
-        float: The training RMSE.
-        float: The validation RMSE.
+        X_train (pd.DataFrame): Training features.
+        y_train (pd.Series): Training target.
+        X_val (pd.DataFrame): Validation features.
+        y_val (pd.Series): Validation target.
+        early_stopping_rounds (int): Number of rounds with no improvement to trigger early stopping.
+        params (dict): XGBoost hyperparameters.
     """
     # Train the model on the training data
     model.fit(X_train, y_train)
@@ -460,7 +538,15 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val):
 
 
 def model_3(X_train, y_train, X_val, y_val):
-        
+    """
+    Train and evaluate a polynomial regression model.
+
+    Args:
+        X_train (pd.DataFrame): Training features.
+        y_train (pd.Series): Training target.
+        X_val (pd.DataFrame): Validation features.
+        y_val (pd.Series): Validation target.
+    """ 
         
         # Calculate mean and median of y_train
         y_train_mean = y_train.mean()
@@ -489,6 +575,17 @@ def model_3(X_train, y_train, X_val, y_val):
 
 
 def best_model(X_train, y_train, X_test, y_test, early_stopping_rounds=10, params=None):
+    """
+    Train and evaluate the best model (XGBoost) with hyperparameter tuning, early stopping, and test data.
+
+    Args:
+        X_train (pd.DataFrame): Training features.
+        y_train (pd.Series): Training target.
+        X_test (pd.DataFrame): Test features.
+        y_test (pd.Series): Test target.
+        early_stopping_rounds (int): Number of rounds with no improvement to trigger early stopping.
+        params (dict): XGBoost hyperparameters.
+    """
    # Define the hyperparameters for your XGBoost model (or pass them as an argument)
     if params is None:
         params = {
